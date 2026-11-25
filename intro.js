@@ -5,6 +5,15 @@
   var root = document.documentElement;
   var bg = document.getElementById("intro-bg"), video = document.getElementById("intro-video");
   var ego = document.getElementById("ego");
+  // Diagnòstic opcional (afegeix ?debug a l'adreça): mostra per què s'activa o es salta l'animació
+  var DEBUG = window.__INTRO_DEBUG || /debug/.test(location.search + location.hash), dbox;
+  function dbg(m) {
+    if (!DEBUG) return;
+    try {
+      if (!dbox) { dbox = document.createElement("pre"); dbox.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:999;margin:0;padding:6px 8px;background:rgba(0,0,0,.82);color:#9f9;font:11px/1.35 monospace;white-space:pre-wrap;max-height:45vh;overflow:auto;pointer-events:none"; document.body.appendChild(dbox); }
+      dbox.textContent += Math.round(performance.now()) + "ms " + m + "\n";
+    } catch (e) {}
+  }
   var done = false, started = false, revealed = false, timers = [];
 
   function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
@@ -18,8 +27,9 @@
     if (bg) bg.classList.add("fade");
     later(function () { root.classList.remove("reveal"); }, 1400);
   }
-  function finish() {            // salta-ho tot i deixa la pàgina com a l'estat final
+  function finish(why) {         // salta-ho tot i deixa la pàgina com a l'estat final
     if (done) return; done = true;
+    dbg("finish: " + (typeof why === "string" ? why : (why && why.name) || (why && why.type) || "?") + " t=" + (video ? video.currentTime : ""));
     timers.forEach(clearTimeout);
     try { video.pause(); } catch (e) {}
     root.classList.remove("intro"); root.classList.add("reveal");
@@ -51,7 +61,8 @@
     else { pre.onload = begin; setTimeout(begin, 2500); }
   }
 
-  if (!root.classList.contains("anim") || !video) { cleanup(); startLoop(); return; }
+  dbg("classes=" + root.className + " video=" + !!video + " reduce=" + (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) + " blend=" + !!(window.CSS && CSS.supports && CSS.supports("mix-blend-mode", "multiply")));
+  if (!root.classList.contains("anim") || !video) { dbg("sense animació (anim=" + root.classList.contains("anim") + ")"); cleanup(); startLoop(); return; }
 
   function playEgo() {          // després del vídeo: l'alter ego entra al bucle i la pàgina queda neta
     if (done) return;
@@ -73,9 +84,9 @@
   }
   function go() {
     if (started) return; started = true;
-    var p = video.play();
+    var p = video.play(); dbg("play() demanat, readyState=" + video.readyState);
     video.classList.add("on");
-    if (p && p.then) p.then(function () { requestAnimationFrame(watch); }, finish); else requestAnimationFrame(watch);
+    if (p && p.then) p.then(function () { dbg("play() ok"); requestAnimationFrame(watch); }, function (e) { finish(e && e.name ? "play rebutjat: " + e.name : "play rebutjat"); }); else requestAnimationFrame(watch);
     later(function () { if (!revealed) finish(); }, 12000);   // seguretat
     // tocar o prémer una tecla salta l'animació
     document.addEventListener("click", skip, { once: true });
@@ -85,9 +96,9 @@
   function whenReady() {
     // Al mòbil (iOS sobretot) el navegador no precarrega el vídeo i "canplay" no arriba fins que es reprodueix:
     // per això no esperem res i engeguem el vídeo directament; si als 5 s no ha avançat, es salta l'animació.
-    video.addEventListener("error", finish, { once: true });
+    video.addEventListener("error", function () { finish("error de vídeo, codi " + (video.error && video.error.code)); }, { once: true });
     go();
-    later(function () { if (!done && !revealed && video.currentTime < 0.2) finish(); }, 5000);
+    later(function () { if (!done && !revealed && video.currentTime < 0.2) finish("el vídeo no avança en 5 s"); }, 5000);
   }
   if (document.getElementById("pop") && root.classList.contains("first")) document.addEventListener("popclosed", function () { later(whenReady, 250); });
   else whenReady();
