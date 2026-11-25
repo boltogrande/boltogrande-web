@@ -83,10 +83,11 @@
   }
   function skip() { if (!done) finish(); }
   function whenReady() {
-    if (video.readyState >= 3) return go();
-    var t = later(function () { finish(); }, 4000);
-    video.addEventListener("canplay", function () { clearTimeout(t); go(); }, { once: true });
+    // Al mòbil (iOS sobretot) el navegador no precarrega el vídeo i "canplay" no arriba fins que es reprodueix:
+    // per això no esperem res i engeguem el vídeo directament; si als 5 s no ha avançat, es salta l'animació.
     video.addEventListener("error", finish, { once: true });
+    go();
+    later(function () { if (!done && !revealed && video.currentTime < 0.2) finish(); }, 5000);
   }
   if (document.getElementById("pop") && root.classList.contains("first")) document.addEventListener("popclosed", function () { later(whenReady, 250); });
   else whenReady();
