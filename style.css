@@ -217,6 +217,7 @@ body.gated { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 
 body.gated .site-header .home img { filter: brightness(0); }
 body.gated main { max-width: 1040px; gap: 40px; }
 body.gated .site-header.open .header-right nav, body.gated .site-header.open nav { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; }
+body.gated .announce { margin-top: 72px; }
 .page-title.wide { font-size: clamp(34px, 9.5vw, 76px); line-height: .92; }
 
 .shows { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; width: 100%; }
