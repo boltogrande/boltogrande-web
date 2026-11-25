@@ -1,0 +1,140 @@
+@font-face { font-family: "Alte Haas Grotesk"; src: url("assets/AlteHaasGrotesk-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: "Alte Haas Grotesk"; src: url("assets/AlteHaasGrotesk-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: block; }
+/* Layout: cartell vertical centrat sobre paper verd; títol, logo, dades del single, il·lustració, compte enrere i botó. Un sol look (sense mode fosc). */
+:root {
+  --green: #4cb22f;
+  --ink: #0d1409;
+  --bg: #f6f5f0;
+  --fg: #0d1409;
+  --btn-bg: #44a828;
+  --btn-fg: #0d1409;
+  --btn-hbg: #0d1409;
+  --btn-hfg: #44a828;
+  --display: "Alte Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --text: "Alte Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+html, body { min-height: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg) url("assets/paper.jpg") 0 0 / 450px 300px repeat;
+  color: var(--fg);
+  font-family: var(--text);
+  font-size: 15px;
+  overflow-x: hidden;
+}
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 104px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  text-align: center;
+}
+main img { display: block; height: auto; max-width: 100%; }
+.title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(38px, 9vw, 64px); line-height: .9; letter-spacing: -.035em; }
+.logo { width: min(100%, 640px); }
+.release { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.release p { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(20px, 4.4vw, 28px); line-height: 1; letter-spacing: -.025em; text-transform: uppercase; }
+.ink { filter: url(#ink); }
+.ink-s { filter: url(#ink-s); }
+h1 {
+  font-family: var(--display); font-weight: 700; margin: 6px 0 0;
+  font-size: clamp(48px, 12vw, 100px); line-height: .88; letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.ill { width: min(55%, 220px); animation: sway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+@media (max-width: 600px) {
+  main { gap: 28px; padding-block: 84px 48px; }
+  .ill { width: 130px; }
+}
+@keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+
+.countdown { display: flex; align-items: flex-start; justify-content: center; gap: clamp(6px, 2vw, 14px); }
+.countdown { background: #44a828; color: #fff; border-radius: 22px; padding: clamp(16px, 3.5vw, 28px) clamp(16px, 4.5vw, 40px) clamp(14px, 3vw, 22px); max-width: 100%; box-sizing: border-box; }
+.countdown .sep, .countdown .lbl { color: var(--ink); }
+.unit { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.num {
+  font-family: var(--display); font-weight: 700; font-size: clamp(48px, 13vw, 96px); line-height: .88;
+  letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+}
+.sep { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 10vw, 72px); line-height: .95; }
+.lbl { font-size: 13px; font-weight: 700; letter-spacing: -.02em; text-transform: uppercase; }
+.out-now { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 9vw, 64px); letter-spacing: -.03em; }
+
+.presave {
+  display: inline-block;
+  font-family: var(--display); font-weight: 700; font-size: clamp(19px, 4.4vw, 23px); letter-spacing: -.02em; text-transform: uppercase;
+  text-decoration: none;
+  background: var(--btn-bg); color: var(--btn-fg);
+  border: 0; border-radius: 999px;
+  padding: 16px 44px;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.presave:hover { background: var(--btn-hbg); color: var(--btn-hfg); box-shadow: inset 0 0 0 3px var(--btn-hfg); }
+.presave span { display: inline-block; filter: url(#ink); }
+.presave:focus-visible { outline: 3px solid var(--fg); outline-offset: 5px; }
+
+footer { font-size: 14px; font-weight: 700; letter-spacing: -.03em; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 8px; }
+.announce { margin: 8px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(44px, 11vw, 84px); line-height: .88; letter-spacing: -.035em; }
+footer a { color: var(--fg); }
+
+#flor, .petal { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 100; font-size: 34px; line-height: 1; user-select: none; will-change: transform; }
+#flor { display: none; }
+.petal { font-size: 22px; }
+@media (pointer: fine) {
+  html.flor-on, html.flor-on * { cursor: none !important; }
+  html.flor-on #flor { display: block; }
+}
+@media (prefers-reduced-motion: reduce) { .ill { animation: none; } }
+
+.pop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(13, 20, 9, .55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); animation: fadein .25s ease; }
+.pop[hidden] { display: none !important; }
+.pop-card { position: relative; width: min(calc(100vw - 32px), 520px); box-sizing: border-box; background: #4cb22f url("assets/paper-green.jpg") 0 0 / 450px 300px repeat;
+  border-radius: 26px; padding: 44px clamp(18px, 5vw, 40px) 32px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;
+  box-shadow: 0 24px 60px rgba(13,20,9,.35); animation: popin .35s cubic-bezier(.2,1.3,.4,1); }
+.pop-card h2 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(42px, 11vw, 72px); line-height: .88; letter-spacing: -.035em; }
+.pop-sub { margin: -8px 0 4px; font-family: var(--display); font-weight: 700; font-size: clamp(18px, 4.4vw, 24px); letter-spacing: -.02em; text-transform: uppercase; }
+.pop-card .countdown { width: 100%; }
+.pop-card .num, .pop-card .sep { filter: url(#ink); }
+.pop-card .num { font-size: clamp(36px, 10vw, 64px); }
+.pop-card .sep { font-size: clamp(30px, 8vw, 52px); }
+.pop-card .presave { margin-top: 6px; }
+.pop-card .countdown { background: var(--ink); color: #fff; }
+.pop-card .countdown .sep, .pop-card .countdown .lbl { color: #6fd84a; }
+.pop-card .presave { background: var(--ink); color: #6fd84a; }
+.pop-card .presave:hover { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 3px var(--ink); }
+.pop-x { position: absolute; top: 10px; right: 14px; width: 40px; height: 40px; border: 0; background: transparent; color: var(--fg);
+  font: 700 34px/1 var(--display); cursor: pointer; border-radius: 50%; }
+.pop-x:hover { background: rgba(13,20,9,.12); }
+.pop-x:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+@keyframes fadein { from { opacity: 0; } }
+@keyframes popin { from { opacity: 0; transform: translateY(16px) scale(.96); } }
+@media (prefers-reduced-motion: reduce) { .pop, .pop-card { animation: none; } }
+
+/* Capçalera: transparent, només es veuen el logo i les paraules */
+.site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px)); background: none; }
+.site-header .home { display: block; line-height: 0; }
+.site-header .home img { width: 112px; height: auto; display: block; }
+.site-header nav { display: flex; gap: clamp(16px, 4vw, 34px); }
+.site-header nav a { font-family: var(--display); font-weight: 400; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; color: var(--fg); padding: 6px 0; filter: url(#ink-s); }
+.site-header nav a:hover, .site-header nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.site-header a:focus-visible { outline: 3px solid var(--fg); outline-offset: 4px; }
+@media (max-width: 600px) { .site-header { padding-top: 14px; } .site-header .home img { width: 92px; } .site-header nav a { font-size: 13px; } }
+
+/* Pàgines interiors (Concerts, Contacta) */
+.page-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(44px, 11vw, 84px); line-height: .88; letter-spacing: -.035em; text-transform: uppercase; }
+.contact-list { display: flex; flex-direction: column; gap: 28px; align-items: center; margin: 0; padding: 0; list-style: none; }
+.contact-list li { display: flex; flex-direction: column; gap: 4px; }
+.contact-list .k { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.contact-list a { font-family: var(--display); font-weight: 700; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: -.03em; color: var(--fg); overflow-wrap: anywhere; }
+.soon { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: -.03em; }
