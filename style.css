@@ -49,10 +49,10 @@ h1 {
   font-size: clamp(48px, 12vw, 100px); line-height: .88; letter-spacing: -.035em;
   text-wrap: balance;
 }
-.ill { width: min(55%, 220px); animation: sway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+.ill { width: min(40%, 150px); animation: sway 5s ease-in-out infinite; transform-origin: 50% 100%; }
 @media (max-width: 600px) {
   main { gap: 28px; padding-block: 84px 48px; }
-  .ill { width: 130px; }
+  .ill { width: 104px; }
 }
 @keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
 
@@ -138,3 +138,13 @@ footer a { color: var(--fg); }
 .contact-list .k { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .contact-list a { font-family: var(--display); font-weight: 700; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: -.03em; color: var(--fg); overflow-wrap: anywhere; }
 .soon { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: -.03em; }
+
+/* Títol FLOR AL CUL (grafisme) */
+.floral { margin: 0; width: min(100%, 680px); line-height: 0; }
+.floral img { width: 100%; height: auto; display: block; }
+
+/* Xarxes a la capçalera: icones petites en negre */
+.site-header .social { display: flex; align-items: center; gap: 12px; margin-left: -6px; }
+.site-header .social a { display: block; line-height: 0; color: var(--fg); padding: 6px 0; filter: url(#ink-s); }
+.site-header .social a:hover { opacity: .6; }
+@media (max-width: 600px) { .site-header nav { gap: 13px; } .site-header .social { gap: 10px; margin-left: 0; } .site-header .social svg { width: 19px; height: 19px; } .site-header .home img { width: 80px; } }
