@@ -1,7 +1,7 @@
 (function () {
   // Animació d'entrada (només en obrir o recarregar la web; ho decideix l'script del <head> de index.html).
   // 1) Pop-up -> 2) vídeo del cartell sobre verd -> 3) en encongir-se, el fons es dissol i apareix la pàgina
-  // -> 4) l'alter ego entra en un bucle (es mou, queda quiet 4 s i torna a començar).
+  // -> 4) l'alter ego entra en un bucle (es mou, queda quiet 8 s i torna a començar).
   var root = document.documentElement;
   var bg = document.getElementById("intro-bg"), video = document.getElementById("intro-video");
   var ego = document.getElementById("ego");
@@ -27,8 +27,8 @@
     cleanup(); startLoop();
   }
 
-  // Alter ego en bucle (fotogrames 7,0-8,0 s del vídeo): es mou, queda quiet a la pose final 4 s i torna a començar
-  var N = 36, COLS = 6, ROWS = 6, MS = 1000 / 30, HOLD = 4000, looping = false;
+  // Alter ego en bucle (fotogrames 7,0-8,0 s del vídeo): es mou, queda quiet a la pose final 8 s i torna a començar
+  var N = 36, COLS = 6, ROWS = 6, MS = 1000 / 30, HOLD = 8000, looping = false;
   var pre = new Image(); pre.src = "assets/ego-loop.webp";   // precarrega l'sprite
   function setFrame(i) {
     ego.style.backgroundPosition = ((i % COLS) * 100 / (COLS - 1)) + "% " + (Math.floor(i / COLS) * 100 / (ROWS - 1)) + "%";
