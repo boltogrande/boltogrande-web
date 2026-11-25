@@ -249,3 +249,8 @@ body.contact .site-header .home img { opacity: 0; }
 body.contact .contact-list .social-row a { color: #4cb22f; -webkit-text-fill-color: currentColor; background: none; filter: url(#ink-m); }
 .contact-list .social-row a { display: block; line-height: 0; padding: 6px; color: var(--fg); filter: url(#ink-m); }
 .contact-list .social-row a:hover { opacity: .6; }
+
+/* Pàgina de llançament: videoclip */
+.video { width: min(100%, 680px); aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: var(--ink); }
+.video iframe { width: 100%; height: 100%; border: 0; display: block; }
+@media (min-width: 900px) { .video { width: min(92vw, 760px); } }
