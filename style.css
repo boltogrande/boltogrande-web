@@ -1,0 +1,251 @@
+@font-face { font-family: "Alte Haas Grotesk"; src: url("assets/AlteHaasGrotesk-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: "Alte Haas Grotesk"; src: url("assets/AlteHaasGrotesk-Regular.woff") format("woff"); font-weight: 400; font-style: normal; font-display: block; }
+/* Layout: cartell vertical centrat sobre paper verd; títol, logo, dades del single, il·lustració, compte enrere i botó. Un sol look (sense mode fosc). */
+:root {
+  --green: #4cb22f;
+  --ink: #0d1409;
+  --bg: #f6f5f0;
+  --fg: #0d1409;
+  --btn-bg: #44a828;
+  --btn-fg: #0d1409;
+  --btn-hbg: #0d1409;
+  --btn-hfg: #44a828;
+  --display: "Alte Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --text: "Alte Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+html, body { min-height: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg) url("assets/paper.jpg") 0 0 / 450px 300px repeat;
+  color: var(--fg);
+  font-family: var(--text);
+  font-size: 15px;
+  overflow-x: hidden;
+}
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 104px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  text-align: center;
+}
+main img { display: block; height: auto; max-width: 100%; }
+.title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(38px, 9vw, 64px); line-height: .9; letter-spacing: -.035em; }
+.logo { width: min(100%, 640px); }
+.release { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.release p { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(20px, 4.4vw, 28px); line-height: 1; letter-spacing: -.025em; text-transform: uppercase; }
+.ink { filter: url(#ink-l); }
+.ink-m { filter: url(#ink-m); }
+.ink-s { filter: url(#ink-s); }
+h1 {
+  font-family: var(--display); font-weight: 700; margin: 6px 0 0;
+  font-size: clamp(48px, 12vw, 100px); line-height: .88; letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.ill { width: min(40%, 150px); animation: sway 5s ease-in-out infinite; transform-origin: 50% 100%; }
+@media (max-width: 600px) {
+  main { gap: 28px; padding-block: 84px 48px; }
+  .ill { width: 104px; }
+}
+@keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+
+.countdown { display: flex; align-items: flex-start; justify-content: center; gap: clamp(6px, 2vw, 14px); }
+.countdown { background: #44a828; color: #fff; border-radius: 22px; padding: clamp(16px, 3.5vw, 28px) clamp(16px, 4.5vw, 40px) clamp(14px, 3vw, 22px); max-width: 100%; box-sizing: border-box; }
+.countdown .sep, .countdown .lbl { color: var(--ink); }
+.unit { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.num {
+  font-family: var(--display); font-weight: 700; font-size: clamp(48px, 13vw, 96px); line-height: .88;
+  letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+}
+.sep { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 10vw, 72px); line-height: .95; }
+.lbl { font-size: 13px; font-weight: 700; letter-spacing: -.02em; text-transform: uppercase; }
+.out-now { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 9vw, 64px); letter-spacing: -.03em; }
+
+.presave {
+  display: inline-block;
+  font-family: var(--display); font-weight: 700; font-size: clamp(19px, 4.4vw, 23px); letter-spacing: -.02em; text-transform: uppercase;
+  text-decoration: none;
+  background: var(--btn-bg); color: var(--btn-fg);
+  border: 0; border-radius: 999px;
+  padding: 16px 44px;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.presave:hover { background: var(--btn-hbg); color: var(--btn-hfg); box-shadow: inset 0 0 0 3px var(--btn-hfg); }
+.presave span { display: inline-block; filter: url(#ink-m); }
+.presave:focus-visible { outline: 3px solid var(--fg); outline-offset: 5px; }
+
+footer { font-size: 14px; font-weight: 700; letter-spacing: -.03em; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 8px; }
+.announce { margin: 8px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(44px, 11vw, 84px); line-height: .88; letter-spacing: -.035em; }
+footer a { color: var(--fg); }
+
+#flor, .petal { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 100; font-size: 34px; line-height: 1; user-select: none; will-change: transform; }
+#flor { display: none; }
+.petal { font-size: 22px; }
+@media (pointer: fine) {
+  html.flor-on, html.flor-on * { cursor: none !important; }
+  html.flor-on #flor { display: block; }
+}
+@media (prefers-reduced-motion: reduce) { .ill { animation: none; } }
+
+.pop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(13, 20, 9, .55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); animation: fadein .25s ease; }
+.pop[hidden] { display: none !important; }
+.pop-card { position: relative; width: min(calc(100vw - 32px), 520px); box-sizing: border-box; background: #4cb22f url("assets/paper-green.jpg") 0 0 / 450px 300px repeat;
+  border-radius: 26px; padding: 44px clamp(18px, 5vw, 40px) 32px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center;
+  box-shadow: 0 24px 60px rgba(13,20,9,.35); animation: popin .35s cubic-bezier(.2,1.3,.4,1); }
+.pop-card h2 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(42px, 11vw, 72px); line-height: .88; letter-spacing: -.035em; }
+.pop-sub { margin: -8px 0 4px; font-family: var(--display); font-weight: 700; font-size: clamp(18px, 4.4vw, 24px); letter-spacing: -.02em; text-transform: uppercase; }
+.pop-card .countdown { width: 100%; }
+.pop-card .num, .pop-card .sep { filter: url(#ink); }
+.pop-card .num { font-size: clamp(36px, 10vw, 64px); }
+.pop-card .sep { font-size: clamp(30px, 8vw, 52px); }
+.pop-card .presave { margin-top: 6px; }
+.pop-card .countdown { background: var(--ink); color: #fff; }
+.pop-card .countdown .sep, .pop-card .countdown .lbl { color: #6fd84a; }
+.pop-card .presave { background: var(--ink); color: #6fd84a; }
+.pop-card .presave:hover { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 3px var(--ink); }
+.pop-x { position: absolute; top: 10px; right: 14px; width: 40px; height: 40px; border: 0; background: transparent; color: var(--fg);
+  font: 700 34px/1 var(--display); cursor: pointer; border-radius: 50%; }
+.pop-x:hover { background: rgba(13,20,9,.12); }
+.pop-x:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+@keyframes fadein { from { opacity: 0; } }
+@keyframes popin { from { opacity: 0; transform: translateY(16px) scale(.96); } }
+@media (prefers-reduced-motion: reduce) { .pop, .pop-card { animation: none; } }
+
+/* Capçalera: transparent, només es veuen el logo i les paraules */
+.site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px max(14px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px)); background: none; }
+.site-header .home { display: block; line-height: 0; }
+.site-header .home img { width: 112px; height: auto; display: block; }
+.site-header nav { display: flex; align-items: center; gap: 16px; }
+.site-header nav a { font-family: var(--display); font-weight: 400; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; color: var(--fg); padding: 6px 0; filter: url(#ink-s); }
+.site-header nav a:hover, .site-header nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.site-header a:focus-visible { outline: 3px solid var(--fg); outline-offset: 4px; }
+@media (max-width: 600px) { .site-header { padding-top: 14px; } .site-header .home img { width: 92px; } .site-header nav a { font-size: 13px; } }
+
+/* Pàgines interiors (Concerts, Contacte) */
+.page-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(44px, 11vw, 84px); line-height: .88; letter-spacing: -.035em; text-transform: uppercase; }
+.contact-list { display: flex; flex-direction: column; gap: 28px; align-items: center; margin: 0; padding: 0; list-style: none; }
+.contact-list li { display: flex; flex-direction: column; gap: 4px; }
+.contact-list .k { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.contact-list a { font-family: var(--display); font-weight: 700; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: -.03em; color: var(--fg); overflow-wrap: anywhere; }
+.soon { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 5.4vw, 34px); letter-spacing: -.03em; }
+
+/* Títol FLOR AL CUL (grafisme) */
+.floral { margin: 0; width: min(100%, 680px); line-height: 0; }
+.floral img { width: 100%; height: auto; display: block; }
+
+/* Xarxes a la capçalera: icones petites en negre */
+.site-header .social { display: flex; align-items: center; gap: 9px; margin-left: -4px; }
+.site-header .social a { display: block; line-height: 0; color: var(--fg); padding: 6px 0; filter: url(#ink-s); }
+.site-header .social a:hover { opacity: .6; }
+@media (max-width: 600px) { .site-header nav { gap: 8px; } .site-header .social { gap: 4px; margin-left: -2px; } .site-header .home { padding: 10px 12px 10px 0; } .site-header .home img { width: 72px; } .site-header nav > a { font-size: 12px; padding: 14px 4px; } .site-header .social a { padding: 13px 6px; } .site-header .social svg { width: 17px; height: 17px; } }
+
+/* Títol més gran a escriptori (la columna de la pàgina és estreta, el títol pot sortir-ne) */
+@media (min-width: 900px) { .floral { width: min(92vw, 1040px); } }
+
+/* Capçalera: bloc de la dreta (menú + xarxes + botó del menú) */
+.header-right { display: flex; align-items: center; gap: 12px; }
+.site-header .social { margin-left: 0; }
+.menu-toggle { display: none; }
+
+@media (max-width: 600px) {
+  .site-header .social { margin-left: 0; }
+  .header-right { gap: 2px; }
+  /* Sense JavaScript els enllaços es queden en fila, com a escriptori */
+  .js .menu-toggle { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -6px; padding: 0; border: 0; background: none; color: var(--fg); cursor: pointer; border-radius: 50%; }
+  .js .menu-toggle:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+  .menu-toggle path { transform-origin: 12px 12px; transition: transform .2s ease, opacity .15s ease; }
+  .site-header.open .menu-toggle .l1 { transform: translateY(5px) rotate(45deg); }
+  .site-header.open .menu-toggle .l2 { opacity: 0; }
+  .site-header.open .menu-toggle .l3 { transform: translateY(-5px) rotate(-45deg); }
+  /* Panell desplegable amb el paper de la web */
+  .js .site-header nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 6px 0 14px;
+    background: var(--bg) url("assets/paper.jpg") 0 0 / 450px 300px repeat; box-shadow: 0 16px 30px rgba(13,20,9,.14); animation: fadein .18s ease; }
+  .js .site-header.open nav { display: flex; }
+  .js .site-header nav > a { font-size: 24px; padding: 16px 20px; text-align: center; filter: none; }
+}
+@media (prefers-reduced-motion: reduce) { .menu-toggle path { transition: none; } .js .site-header nav { animation: none; } }
+
+/* Pop-up: títol FLOR AL CUL en blanc, 4 fotogrames amb el traç una mica diferent en bucle */
+.pop-card h2.boil { position: relative; width: 100%; margin: 0; line-height: 0; aspect-ratio: 1040 / 241; }
+.boil img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; animation: boil .6s steps(1, end) infinite; }
+.boil img:nth-child(1) { animation-delay: 0s; }
+.boil img:nth-child(2) { animation-delay: -.45s; }
+.boil img:nth-child(3) { animation-delay: -.3s; }
+.boil img:nth-child(4) { animation-delay: -.15s; }
+@keyframes boil { 0% { opacity: 1; } 25% { opacity: 0; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .boil img { animation: none; } .boil img:nth-child(1) { opacity: 1; } }
+
+/* Introducció: vídeo del cartell (tinta sobre fons verd amb textura); en encongir-se el fons es dissol i apareix la pàgina */
+#intro-bg, #intro-video { display: none; position: fixed; pointer-events: none; }
+html.anim #intro-bg { display: block; inset: 0; z-index: 30; background: #4dab33 url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; transition: opacity .55s ease; }
+html.anim #intro-bg.fade { opacity: 0; }
+html.anim #intro-video { --H: min(170vh, 177.9vw); display: block; z-index: 31; left: 50%; top: calc(50% - .58 * var(--H)); height: var(--H); width: calc(var(--H) * 480 / 854); transform: translateX(-50%);
+  mix-blend-mode: multiply; opacity: 0; }
+html.anim #intro-video.on { opacity: 1; }
+html.anim #intro-video.off { opacity: 0; transition: opacity .2s ease; }
+html.intro, html.intro body { overflow: hidden; }
+html.intro main, html.intro .site-header .home, html.intro .header-right { visibility: hidden; }
+html.anim.ego-wait .ill-img { visibility: hidden; }
+.ill { position: relative; }
+.ill-img { width: 100%; }
+.ego { display: none; position: absolute; inset: 0; background: url("assets/ego-sprite.webp") 0 0 / 400% 100% no-repeat; pointer-events: none; }
+@keyframes reveal { from { opacity: 0; transform: translateY(14px); } }
+html.reveal main { animation: reveal .8s cubic-bezier(.2, .7, .2, 1) both; }
+html.reveal .header-right { animation: reveal .7s ease both; }
+@media (prefers-reduced-motion: reduce) { html.reveal main, html.reveal .header-right { animation: none; } }
+
+/* Pestanya Concerts: només visible a partir de la data de gate.js */
+[data-gate] { display: none; }
+html.gate-open [data-gate] { display: revert; }
+html:not(.gate-open) body.gated main { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Tota la pàgina en verd amb la textura de paper, logo i textos en negre */
+body.gated { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; }
+body.gated .site-header .home img { filter: brightness(0); }
+body.gated main { max-width: 1040px; gap: 40px; }
+body.gated .site-header.open .header-right nav, body.gated .site-header.open nav { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; }
+.page-title.wide { font-size: clamp(34px, 9.5vw, 76px); line-height: .92; }
+
+.shows { display: grid; grid-template-columns: minmax(0, 1fr); gap: 56px; width: 100%; }
+.show { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+.show .city, .show .date, .show .venue { margin: 0; font-family: var(--display); font-weight: 700; color: var(--ink); }
+.show .city { font-size: clamp(44px, 13.5vw, 96px); line-height: .9; letter-spacing: -.045em; text-transform: uppercase; }
+.show .date { font-size: clamp(22px, 6vw, 38px); letter-spacing: -.03em; text-transform: uppercase; margin-top: 4px; }
+.show .venue { font-size: clamp(20px, 5.2vw, 30px); letter-spacing: -.03em; }
+.show .presave { margin-top: 14px; font-size: 15px; padding: 11px 28px; background: var(--ink); color: #44a828; }
+.show .presave span { filter: url(#ink-s); }
+/* En seleccionar-lo, el botó es fon amb el fons verd texturat i només queda una circumferència negra fina */
+.show .presave:hover, .show .presave:focus-visible { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+@media (min-width: 800px) { .shows { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start; } .show .city { font-size: clamp(44px, 6.2vw, 84px); } }
+
+/* Contacte: fons negre, lletres verdes amb la textura del cartell. Soroll igualat: gran = ink, mitjà = ink-m, petit = ink-s */
+body.contact { --fg: #4cb22f; background: #0d1409; }
+body.contact .contact-list { filter: none; }
+body.contact .page-title, body.contact .contact-list .k, body.contact .contact-list a {
+  color: transparent; -webkit-text-fill-color: transparent;
+  background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; -webkit-background-clip: text; background-clip: text; }
+body.contact .contact-list .k { filter: url(#ink-s); }
+body.contact .contact-list a { filter: url(#ink-m); }
+body.contact .site-header.open nav { background: #0d1409; box-shadow: 0 16px 30px rgba(0,0,0,.35); }
+/* Logo opac (a l'original té 78% d'opacitat i sobre negre quedava fosc) */
+body.contact .site-header .home { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat;
+  -webkit-mask: url("assets/logo-boltogrande.webp") center / contain no-repeat, url("assets/logo-boltogrande.webp") center / contain no-repeat;
+          mask: url("assets/logo-boltogrande.webp") center / contain no-repeat, url("assets/logo-boltogrande.webp") center / contain no-repeat; }
+body.contact .site-header .home { background-origin: content-box; background-clip: content-box; -webkit-mask-origin: content-box; mask-origin: content-box; -webkit-mask-clip: content-box; mask-clip: content-box; }
+body.contact .site-header .home img { opacity: 0; }
+.contact-list .social-row { flex-direction: row; justify-content: center; gap: 22px; margin-top: 4px; }
+body.contact .contact-list .social-row a { color: #4cb22f; -webkit-text-fill-color: currentColor; background: none; filter: url(#ink-m); }
+.contact-list .social-row a { display: block; line-height: 0; padding: 6px; color: var(--fg); filter: url(#ink-m); }
+.contact-list .social-row a:hover { opacity: .6; }
