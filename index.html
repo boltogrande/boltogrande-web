@@ -43,9 +43,9 @@
 <video id="intro-video" src="assets/intro-grafica.mp4" muted playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
 
 <main>
-  <h1 class="floral"><img src="assets/floralcul-titol.webp" alt="BOLTÓGRANDE presenta FLOR AL CUL" width="1500" height="347"></h1>
-
   <div class="video" id="video" hidden></div>
+
+  <h1 class="floral" id="floral"><img src="assets/floralcul-titol.webp" alt="BOLTÓGRANDE presenta FLOR AL CUL" width="1500" height="347"></h1>
 
   <a class="presave" href="https://orcd.co/floralcul" target="_blank" rel="noopener"><span>Escolta'l aquí</span></a>
 
@@ -71,6 +71,7 @@
     if (!YT_ID || !box) return;
     box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + YT_ID + '?rel=0" title="FLOR AL CUL, videoclip" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>';
     box.hidden = false;
+    var t = document.getElementById("floral"); if (t) t.classList.add("sr-only");   // el grafisme FLOR AL CUL ja és a la miniatura del vídeo
   })();
 </script>
 <script src="menu.js"></script>
