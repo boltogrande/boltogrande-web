@@ -75,6 +75,6 @@
     video.addEventListener("canplay", function () { clearTimeout(t); go(); }, { once: true });
     video.addEventListener("error", finish, { once: true });
   }
-  if (document.getElementById("pop")) document.addEventListener("popclosed", function () { later(whenReady, 250); });
+  if (document.getElementById("pop") && root.classList.contains("first")) document.addEventListener("popclosed", function () { later(whenReady, 250); });
   else whenReady();
 })();

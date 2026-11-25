@@ -14,7 +14,9 @@
   var reload = !!nav && nav.type === "reload";
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var ok = window.CSS && CSS.supports && CSS.supports("mix-blend-mode", "multiply");
-  if ((reload || !internal) && !reduce && ok) d.classList.add("intro", "anim");
+  var first = reload || !internal;                 // primera visita o recàrrega, no tornar a l'inici des d'una altra pestanya
+  if (first) d.classList.add("first");
+  if (first && !reduce && ok) d.classList.add("intro", "anim");
 })();
 </script>
 <link rel="stylesheet" href="style.css">
@@ -100,14 +102,14 @@
   }
   tick(); setInterval(tick, 1000);
 
-  // Pop-up del compte enrere: s'obre en carregar
+  // Pop-up del compte enrere: només s'obre a la primera visita o en recarregar
   var pop = document.getElementById("pop"), lastFocus = null;
   function openPop() { lastFocus = document.activeElement; pop.hidden = false; document.getElementById("pop-x").focus(); }
   function closePop() { pop.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); document.dispatchEvent(new Event("popclosed")); }
   document.getElementById("pop-x").addEventListener("click", closePop);
   pop.addEventListener("click", function (e) { if (e.target === pop) closePop(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) closePop(); });
-  setTimeout(openPop, 700);
+  if (document.documentElement.classList.contains("first")) setTimeout(openPop, 700);
 })();
 </script>
 <script src="menu.js"></script>
