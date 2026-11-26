@@ -302,3 +302,9 @@ body.gated .page-title.wide { margin-top: 30px; }
 
 /* Títol del bloc: mida de la data, més separat de les ciutats */
 .conc-home .conc-title { font-size: clamp(11px, 3.3vw, 22px); margin-bottom: 14px; }
+
+/* Botons amb la vora i el cos en efecte tinta, com les lletres grotesk */
+.presave, .presave:hover, .presave:focus-visible, body.green .presave, body.green .presave:hover, .show .presave, .show .presave:hover, .pop-card .presave, .pop-card .presave:hover { background: transparent !important; box-shadow: none !important; }
+.presave { position: relative; isolation: isolate; }
+.presave::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 999px; background: var(--ink); filter: url(#ink-btn); transition: background-color .2s ease, box-shadow .2s ease; }
+.presave:hover::before, .presave:focus-visible::before { background: transparent; box-shadow: inset 0 0 0 2px var(--ink); }
