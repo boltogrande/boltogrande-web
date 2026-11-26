@@ -72,7 +72,7 @@ h1 {
   display: inline-block;
   font-family: var(--display); font-weight: 700; font-size: clamp(19px, 4.4vw, 23px); letter-spacing: -.02em; text-transform: uppercase;
   text-decoration: none;
-  background: var(--btn-bg); color: var(--btn-fg);
+  background: var(--btn-bg) url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; color: var(--btn-fg);
   border: 0; border-radius: 999px;
   padding: 16px 44px;
   transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
@@ -250,3 +250,13 @@ body.contact .site-header .home img { opacity: 0; }
 body.contact .contact-list .social-row a { color: #4cb22f; -webkit-text-fill-color: currentColor; background: none; filter: url(#ink-m); }
 .contact-list .social-row a { display: block; line-height: 0; padding: 6px; color: var(--fg); filter: url(#ink-m); }
 .contact-list .social-row a:hover { opacity: .6; }
+
+/* Pàgina de llançament: videoclip */
+.video { width: min(100%, 680px); aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: var(--ink); }
+.video iframe { width: 100%; height: 100%; border: 0; display: block; }
+@media (min-width: 900px) { .video { width: min(92vw, 1040px, max(640px, calc((100svh - 190px) * 16 / 9))); } }
+/* Mòbil/tauleta: la miniatura obre el vídeo directament a l'app de YouTube (enllaç universal) */
+.video .yt-link { display: block; position: relative; width: 100%; height: 100%; }
+.video .yt-link img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video .yt-play { position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; background: rgba(13,20,9,.82); }
+.video .yt-play::after { content: ""; position: absolute; left: 27px; top: 21px; border-style: solid; border-width: 13px 0 13px 22px; border-color: transparent transparent transparent #6fd84a; }

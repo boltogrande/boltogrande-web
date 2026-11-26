@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="BOLTÓGRANDE presenta FLOR AL CUL, primer single. Dijous 26 de novembre a les 20h. Fes el pre-save.">
+<meta name="description" content="BOLTÓGRANDE presenta FLOR AL CUL, primer single. Ja disponible a totes les plataformes.">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BOLTÓGRANDE">
 <meta property="og:title" content="BOLTÓGRANDE · FLOR AL CUL">
-<meta property="og:description" content="BOLTÓGRANDE presenta FLOR AL CUL, primer single. Dijous 26 de novembre a les 20h. Fes el pre-save.">
+<meta property="og:description" content="BOLTÓGRANDE presenta FLOR AL CUL, primer single. Ja disponible a totes les plataformes.">
 <meta property="og:url" content="https://boltogrande.com/">
 <meta property="og:image" content="https://boltogrande.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -57,13 +57,15 @@
 <video id="intro-video" src="assets/intro-grafica.mp4" muted playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
 
 <main>
-  <h1 class="floral"><img src="assets/floralcul-titol.webp" alt="BOLTÓGRANDE presenta FLOR AL CUL" width="1500" height="347"></h1>
+  <div class="video" id="video" hidden></div>
 
-  <a class="presave" href="https://orcd.co/floralcul" target="_blank" rel="noopener"><span>Pre-save</span></a>
+  <h1 class="floral" id="floral"><img src="assets/floralcul-titol.webp" alt="BOLTÓGRANDE presenta FLOR AL CUL" width="1500" height="347"></h1>
+
+  <a class="presave" href="https://orcd.co/floralcul" target="_blank" rel="noopener"><span>Escolta'l aquí</span></a>
 
   <div class="release ink-m">
     <p>Primer single</p>
-    <p>Dijous 26 · 20h</p>
+    <p>Ja disponible</p>
   </div>
 
   <div class="ill" id="ill">
@@ -74,57 +76,25 @@
   <p class="announce ink">NOU DISC<br>NOVA GIRA<br>2027</p>
 </main>
 
-<div id="pop" class="pop" role="dialog" aria-modal="true" aria-labelledby="pop-t" hidden>
-  <div class="pop-card">
-    <button class="pop-x" id="pop-x" type="button" aria-label="Tancar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-    <h2 id="pop-t" class="boil">
-      <img src="assets/floralcul-blanc-1.webp" alt="BOLTÓGRANDE presenta FLOR AL CUL" width="1040" height="241">
-      <img src="assets/floralcul-blanc-2.webp" alt="" aria-hidden="true" width="1040" height="241">
-      <img src="assets/floralcul-blanc-3.webp" alt="" aria-hidden="true" width="1040" height="241">
-      <img src="assets/floralcul-blanc-4.webp" alt="" aria-hidden="true" width="1040" height="241">
-    </h2>
-    <p class="pop-sub ink-m">Nou single</p>
-    <div id="cd" class="countdown" aria-live="polite">
-      <div class="unit"><span class="num" id="d">00</span><span class="lbl">dies</span></div>
-      <span class="sep">:</span>
-      <div class="unit"><span class="num" id="h">00</span><span class="lbl">hores</span></div>
-      <span class="sep">:</span>
-      <div class="unit"><span class="num" id="m">00</span><span class="lbl">min</span></div>
-      <span class="sep">:</span>
-      <div class="unit"><span class="num" id="s">00</span><span class="lbl">seg</span></div>
-    </div>
-    <div id="out" class="out-now" hidden>Ja disponible!</div>
-    <a class="presave" href="https://orcd.co/floralcul" target="_blank" rel="noopener"><span>Pre-save</span></a>
-  </div>
-</div>
 <div id="flor" aria-hidden="true">🌸</div>
 <script>
-(function () {
-  // Estrena: dijous 26 nov 2026, 20:00 hora peninsular (CET, UTC+1)
-  var target = new Date("2026-11-26T20:00:00+01:00").getTime();
-  var cd = document.getElementById("cd"), out = document.getElementById("out");
-  var el = { d: document.getElementById("d"), h: document.getElementById("h"), m: document.getElementById("m"), s: document.getElementById("s") };
-  function pad(n) { return String(n).padStart(2, "0"); }
-  function tick() {
-    var diff = target - Date.now();
-    if (diff <= 0) { cd.hidden = true; out.hidden = false; return; }
-    var t = Math.floor(diff / 1000);
-    el.d.textContent = pad(Math.floor(t / 86400));
-    el.h.textContent = pad(Math.floor(t % 86400 / 3600));
-    el.m.textContent = pad(Math.floor(t % 3600 / 60));
-    el.s.textContent = pad(t % 60);
-  }
-  tick(); setInterval(tick, 1000);
-
-  // Pop-up del compte enrere: només s'obre a la primera visita o en recarregar
-  var pop = document.getElementById("pop"), lastFocus = null;
-  function openPop() { lastFocus = document.activeElement; pop.hidden = false; document.getElementById("pop-x").focus(); }
-  function closePop() { pop.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus(); document.dispatchEvent(new Event("popclosed")); }
-  document.getElementById("pop-x").addEventListener("click", closePop);
-  pop.addEventListener("click", function (e) { if (e.target === pop) closePop(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !pop.hidden) closePop(); });
-  if (document.documentElement.classList.contains("first")) setTimeout(openPop, 700);
-})();
+  // ID del videoclip de YouTube (la part final de l'enllaç). Si és buit, el vídeo no es mostra.
+  var YT_ID = "5DlIPbnyHNk";
+  (function () {
+    var box = document.getElementById("video");
+    if (!YT_ID || !box) return;
+    // Al mòbil/tauleta (pantalla tàctil): miniatura que obre l'app de YouTube; a l'ordinador, el reproductor incrustat
+    var touch = window.matchMedia && matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (touch) {
+      box.innerHTML = '<a class="yt-link" href="https://youtu.be/' + YT_ID + '" aria-label="Veure el videoclip de FLOR AL CUL a YouTube"><img src="https://i.ytimg.com/vi/' + YT_ID + '/maxresdefault.jpg" alt="" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/' + YT_ID + '/hqdefault.jpg\'"><span class="yt-play"></span></a>';
+      box.hidden = false;
+      var t0 = document.getElementById("floral"); if (t0) t0.classList.add("sr-only");
+      return;
+    }
+    box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + YT_ID + '?rel=0" title="FLOR AL CUL, videoclip" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>';
+    box.hidden = false;
+    var t = document.getElementById("floral"); if (t) t.classList.add("sr-only");   // el grafisme FLOR AL CUL ja és a la miniatura del vídeo
+  })();
 </script>
 <script src="menu.js"></script>
 <script src="intro.js"></script>
