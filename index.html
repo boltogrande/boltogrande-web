@@ -83,6 +83,14 @@
   (function () {
     var box = document.getElementById("video");
     if (!YT_ID || !box) return;
+    // Al mòbil/tauleta (pantalla tàctil): miniatura que obre l'app de YouTube; a l'ordinador, el reproductor incrustat
+    var touch = window.matchMedia && matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (touch) {
+      box.innerHTML = '<a class="yt-link" href="https://youtu.be/' + YT_ID + '" aria-label="Veure el videoclip de FLOR AL CUL a YouTube"><img src="https://i.ytimg.com/vi/' + YT_ID + '/maxresdefault.jpg" alt="" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/' + YT_ID + '/hqdefault.jpg\'"><span class="yt-play"></span></a>';
+      box.hidden = false;
+      var t0 = document.getElementById("floral"); if (t0) t0.classList.add("sr-only");
+      return;
+    }
     box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + YT_ID + '?rel=0" title="FLOR AL CUL, videoclip" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>';
     box.hidden = false;
     var t = document.getElementById("floral"); if (t) t.classList.add("sr-only");   // el grafisme FLOR AL CUL ja és a la miniatura del vídeo
