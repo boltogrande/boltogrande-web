@@ -286,3 +286,6 @@ html.gate-open .conc-home[data-gate] { display: flex; }
 .conc-home .presave span { filter: url(#ink-s); }
 .conc-home .tix-d { display: none; }
 @media (min-width: 800px) { .conc-home .conc-row { gap: 40px; } .conc-home .tix-d { display: inline-flex; } .conc-home .tix-m { display: none; } }
+
+/* Lletres dels botons ENTRADES en el verd neó del logo */
+body .conc-home .presave, body .show .presave { color: #54ff47; }
