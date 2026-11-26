@@ -214,7 +214,7 @@ html:not(.gate-open) body.gated main { display: none; }
 
 /* Tota la pàgina en verd amb la textura de paper, logo i textos en negre */
 body.gated { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; }
-body.gated .site-header .home img { filter: brightness(0); }
+body.gated .site-header .home img { filter: url(#logo-neon); }
 body.gated main { max-width: 1040px; gap: 40px; }
 body.gated .site-header.open .header-right nav, body.gated .site-header.open nav { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; }
 body.gated .announce { margin-top: 72px; }
@@ -271,3 +271,18 @@ body.green .site-header .home img { filter: url(#logo-neon); }
 body.green .site-header.open .header-right nav, body.green .site-header.open nav { background: #4cb22f url("assets/paper-green-gira.jpg") 0 0 / 640px 407px repeat; }
 body.green .presave { background: var(--ink); color: #44a828; }
 body.green .presave:hover, body.green .presave:focus-visible { outline: none; background: transparent; color: #54ff47; box-shadow: inset 0 0 0 2px var(--ink); }
+
+/* Inici: bloc de concerts a sobre del videoclip (visible a partir de l'hora d'obertura, via gate.js) */
+.conc-home { display: none; flex-direction: column; align-items: center; gap: 12px; width: 100%; margin: 0 0 26px; }
+html.gate-open .conc-home[data-gate] { display: flex; }
+.conc-home .conc-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(15px, 5vw, 30px); line-height: 1; letter-spacing: -.035em; text-transform: uppercase; white-space: nowrap; color: var(--ink); }
+.conc-home .conc-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.conc-home .conc { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; text-align: center; }
+.conc-home .city, .conc-home .date, .conc-home .venue { margin: 0; font-family: var(--display); font-weight: 700; color: var(--ink); }
+.conc-home .city { font-size: clamp(20px, 6.4vw, 48px); line-height: .9; letter-spacing: -.045em; text-transform: uppercase; }
+.conc-home .date { font-size: clamp(11px, 3.3vw, 22px); letter-spacing: -.03em; text-transform: uppercase; margin-top: 3px; }
+.conc-home .venue { font-size: clamp(11px, 3.2vw, 20px); letter-spacing: -.03em; }
+.conc-home .presave { margin-top: 6px; font-size: 14px; padding: 10px 26px; }
+.conc-home .presave span { filter: url(#ink-s); }
+.conc-home .tix-d { display: none; }
+@media (min-width: 800px) { .conc-home .conc-row { gap: 40px; } .conc-home .tix-d { display: inline-flex; } .conc-home .tix-m { display: none; } }
