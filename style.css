@@ -312,3 +312,7 @@ body.gated .page-title.wide { margin-top: 30px; }
 /* Anunci final: centrat, en dues línies */
 .announce, body.gated .announce { align-self: center; text-align: center; left: auto; position: static; font-size: clamp(18px, 5.6vw, 52px); line-height: 1; white-space: nowrap; }
 @media (min-width: 740px) { .announce, body.gated .announce { position: static; left: auto; } }
+
+/* Concerts: anunci final ben separat dels dos concerts */
+body.gated .announce { margin-top: 120px; }
+@media (min-width: 740px) { body.gated .announce { margin-top: 150px; } }
