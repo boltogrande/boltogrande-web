@@ -282,3 +282,22 @@ body.green .presave:hover, body.green .presave:focus-visible { outline: none; ba
 /* Logo de la capçalera una mica més gran */
 .site-header .home img { width: 140px; }
 @media (max-width: 600px) { .site-header .home img { width: 90px; } }
+
+/* Icones socials: mateixa mida visual i mateixa distància (capçalera i Contacte) */
+.site-header .social { gap: 12px; margin-left: 0; }
+.site-header .social a { padding: 6px 0; }
+.site-header .social svg, .social-row svg { display: block; height: auto; overflow: visible; }
+.site-header .social a[aria-label^="Instagram"] svg, .site-header .social a[aria-label^="Spotify"] svg { width: 19px; height: 19px; }
+.site-header .social a[aria-label^="TikTok"] svg { width: 18px; height: 21px; }
+.site-header .social a[aria-label^="YouTube"] svg { width: 25px; height: 17.6px; }
+@media (max-width: 600px) {
+  .site-header .social { gap: 9px; margin-left: 0; margin-right: -7px; }
+  .site-header .social a[aria-label^="Instagram"] svg, .site-header .social a[aria-label^="Spotify"] svg { width: 16px; height: 16px; }
+  .site-header .social a[aria-label^="TikTok"] svg { width: 15px; height: 17.5px; }
+  .site-header .social a[aria-label^="YouTube"] svg { width: 21px; height: 14.8px; }
+}
+.contact-list .social-row { gap: 30px; align-items: center; }
+.contact-list .social-row a { display: flex; align-items: center; justify-content: center; padding: 8px; }
+.social-row a[aria-label^="Instagram"] svg, .social-row a[aria-label^="Spotify"] svg { width: 29px; height: 29px; }
+.social-row a[aria-label^="TikTok"] svg { width: 27px; height: 31px; }
+.social-row a[aria-label^="YouTube"] svg { width: 38px; height: 26.7px; }
