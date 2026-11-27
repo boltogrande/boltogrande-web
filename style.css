@@ -338,3 +338,18 @@ body.gated .announce { margin-top: 120px; }
 .social-row a[aria-label^="Instagram"] svg, .social-row a[aria-label^="Spotify"] svg { width: 29px; height: 29px; }
 .social-row a[aria-label^="TikTok"] svg { width: 27px; height: 31px; }
 .social-row a[aria-label^="YouTube"] svg { width: 38px; height: 26.7px; }
+
+/* Neó en seqüència: un sol element en verd neó que va baixant per ordre (Barcelona, data, sala, Girona, data, sala). Inici i Concerts */
+@keyframes neo-seq { 0%, 16.66% { color: #54ff47; } 16.67%, 100% { color: var(--ink); } }
+.conc-home .conc .city, .conc-home .conc .date, .conc-home .conc .venue,
+.shows .show .city, .shows .show .date, .shows .show .venue { animation: neo-seq 3.6s steps(1, end) infinite; animation-delay: calc(var(--k) * .6s); }
+.conc-home .conc:nth-child(1) .city,  .shows .show:nth-child(1) .city  { --k: 0; }
+.conc-home .conc:nth-child(1) .date,  .shows .show:nth-child(1) .date  { --k: 1; }
+.conc-home .conc:nth-child(1) .venue, .shows .show:nth-child(1) .venue { --k: 2; }
+.conc-home .conc:nth-child(2) .city,  .shows .show:nth-child(2) .city  { --k: 3; }
+.conc-home .conc:nth-child(2) .date,  .shows .show:nth-child(2) .date  { --k: 4; }
+.conc-home .conc:nth-child(2) .venue, .shows .show:nth-child(2) .venue { --k: 5; }
+@media (prefers-reduced-motion: reduce) {
+  .conc-home .conc .city, .conc-home .conc .date, .conc-home .conc .venue,
+  .shows .show .city, .shows .show .date, .shows .show .venue { animation: none; }
+}
