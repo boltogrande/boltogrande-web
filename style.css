@@ -278,3 +278,7 @@ body.green .presave:hover, body.green .presave:focus-visible { outline: none; ba
 /* Anunci final: centrat, en dues línies */
 .announce, body.gated .announce { align-self: center; text-align: center; left: auto; position: static; font-size: clamp(18px, 5.6vw, 52px); line-height: 1; white-space: nowrap; }
 @media (min-width: 740px) { .announce, body.gated .announce { position: static; left: auto; } }
+
+/* Logo de la capçalera una mica més gran */
+.site-header .home img { width: 140px; }
+@media (max-width: 600px) { .site-header .home img { width: 90px; } }
