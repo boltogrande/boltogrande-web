@@ -308,3 +308,7 @@ body.gated .page-title.wide { margin-top: 30px; }
 .presave { position: relative; isolation: isolate; }
 .presave::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 999px; background: var(--ink); filter: url(#ink-btn); transition: background-color .2s ease, box-shadow .2s ease; }
 .presave:hover::before, .presave:focus-visible::before { background: transparent; box-shadow: inset 0 0 0 2px var(--ink); }
+
+/* Anunci final: centrat, en dues línies */
+.announce, body.gated .announce { align-self: center; text-align: center; left: auto; position: static; font-size: clamp(18px, 5.6vw, 52px); line-height: 1; white-space: nowrap; }
+@media (min-width: 740px) { .announce, body.gated .announce { position: static; left: auto; } }
