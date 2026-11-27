@@ -316,3 +316,6 @@ body.gated .page-title.wide { margin-top: 30px; }
 /* Concerts: anunci final ben separat dels dos concerts */
 body.gated .announce { margin-top: 120px; }
 @media (min-width: 740px) { body.gated .announce { margin-top: 150px; } }
+/* Logo de la capçalera una mica més gran */
+.site-header .home img { width: 140px; }
+@media (max-width: 600px) { .site-header .home img { width: 90px; } }
